@@ -29,7 +29,7 @@ jobs:
     
     - name: Access cloned repo
       run: |
-         cd ansible
+         cd playbook
          ls -la
 
     - name: Install Ansible
@@ -42,7 +42,12 @@ jobs:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
     
     
-    - name: Run Ansible Playbook
+    - name: Run Ansible homework3
+      run: |
+        ansible-playbook -i inventory homework3.yaml --ssh-common-args='-o StrictHostKeyChecking=no'
+
+    - name: Run Ansible homework4
       run: |
         ansible-playbook -i inventory homework4.yaml --ssh-common-args='-o StrictHostKeyChecking=no'
+
 
